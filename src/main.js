@@ -1,6 +1,10 @@
+import { Controller } from "./controller.js";
+
 /**
  * Entry point for the application
  */
 (function main() {
-    console.log('Hello world');
+    const controller = new Controller();
+
+    console.log(controller);
 })();
