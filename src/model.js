@@ -21,4 +21,10 @@ export class Model {
             .then(response => (this.values = response.data.values))
             .catch(error => console.log(error))
     }
+
+    getConfig() {
+        return axios.get(`${SERVER_URL}configuration`)
+            .then(response => (this.maxLength = response.data.maxLength))
+            .catch(error => console.log(error))
+    }
 }
