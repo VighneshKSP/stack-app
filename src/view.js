@@ -17,24 +17,27 @@ export class View {
             <div class="values">${this.model.values}</div>
 
             <form class="config">
-                <input placeholder="Maximum length of the stack" type="number" required id="${this.maxLengthId}">
+                <label for="max-length">Stack length: </label>
+                <input type="number" name="max-length" id="${this.maxLengthId}" min="1" max="1000">
                 <input type="button" name="submit" value="Apply" id="${this.applyCfgId}">
             </form>
         `;
 
-        this.setInitialValues();
+        this.setElementReferences();
+
+        //Set initial value
+        this.maxLength.value = this.model.maxLength;
 
         this.registerHandlers();
     }
 
-    setInitialValues() {
-        const maxLength = document.getElementById(this.maxLengthId);
-        maxLength.value = this.model.maxLength;
+    setElementReferences() {
+        this.maxLength = document.getElementById(this.maxLengthId);
+        this.applyCfgButton = document.getElementById(this.applyCfgId);
     }
 
     registerHandlers() {
         // Handler for push button
-        this.applyCfgButton = document.getElementById(this.applyCfgId);
         this.applyCfgButton.addEventListener('click', () => this.setMaxLength()); 
     }
 
