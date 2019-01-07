@@ -12,8 +12,8 @@ export class Model {
         this.maxLength = null;
     }
 
-    async initialize() {
-        await axios.all([this.getValues(), this.getConfig()]);
+    initialize() {
+        return axios.all([this.getValues(), this.getConfig()]);
     }
 
     getValues() {

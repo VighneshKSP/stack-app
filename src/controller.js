@@ -11,7 +11,9 @@ export class Controller {
         this.view = new View(this.model);
     }
 
-    initialize() {
-        this.model.initialize();
+    async initialize() {
+        await this.model.initialize();
+        
+        this.view.initialize();
     }
 }
