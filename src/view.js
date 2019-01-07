@@ -23,10 +23,24 @@ export class View {
         `;
 
         this.setInitialValues();
+
+        this.registerHandlers();
     }
 
     setInitialValues() {
         const maxLength = document.getElementById(this.maxLengthId);
         maxLength.value = this.model.maxLength;
+    }
+
+    registerHandlers() {
+        // Handler for push button
+        this.applyCfgButton = document.getElementById(this.applyCfgId);
+        this.applyCfgButton.addEventListener('click', () => this.setMaxLength()); 
+    }
+
+    setMaxLength() {
+        const maxLength = document.getElementById(this.maxLengthId).value;
+        
+        console.log("New value", maxLength, this.model.maxLength);
     }
 }
