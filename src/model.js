@@ -12,6 +12,10 @@ export class Model {
         this.maxLength = null;
     }
 
+    async initialize() {
+        await axios.all([this.getValues(), this.getConfig()]);
+    }
+
     getValues() {
         return axios.get(`${SERVER_URL}stack`)
             .then(response => (this.values = response.data.values))

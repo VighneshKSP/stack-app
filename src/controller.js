@@ -9,4 +9,8 @@ export class Controller {
         this.model = new Model();
         this.view = null;
     }
+
+    initialize() {
+        this.model.initialize();
+    }
 }

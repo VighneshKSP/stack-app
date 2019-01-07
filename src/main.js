@@ -6,5 +6,7 @@ import { Controller } from "./controller.js";
 (function main() {
     const controller = new Controller();
 
+    controller.initialize();
+
     console.log(controller);
 })();
