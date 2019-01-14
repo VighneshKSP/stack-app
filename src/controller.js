@@ -23,4 +23,11 @@ export class Controller {
         this.model.setMaxLength(length)
             .then(() => this.initialize());
     }
+
+    /** 
+     * Method to pop the value from stack
+     */
+    pop() {
+        this.model.pop().then(() => this.initialize());
+    }
 }
