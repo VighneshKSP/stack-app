@@ -1,3 +1,5 @@
+import {StackUnderFlowError} from './exceptions.js';
+
 const SERVER_URL = 'http://localhost:3000/'
 
 /**
@@ -45,6 +47,10 @@ export class Model {
      * Returns a promise
      */
     pop() {
+        if (!this.values.length) {
+            throw new StackUnderFlowError('Cannot pop the value. Stack is empty.');
+        }
+
         this.values.splice(0, 1);
         
         return axios.post(`${SERVER_URL}stack`, {values: this.values})
