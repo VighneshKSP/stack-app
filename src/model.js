@@ -27,4 +27,15 @@ export class Model {
             .then(response => (this.maxLength = response.data.maxLength))
             .catch(error => console.log(error))
     }
+
+    /**
+     * Method to update the stack configuration via a POST request
+     * 
+     * Returns a promise
+     */
+    setMaxLength(length) {
+        return axios.post(`${SERVER_URL}configuration`, {maxLength: length})
+            .then(() => {})
+            .catch(error => console.log(error))
+    }
 }
