@@ -36,10 +36,10 @@ export class View {
         this.maxLength = document.getElementById(this.maxLengthId);
         this.applyCfgButton = document.getElementById(this.applyCfgId);
     }
-
+    
     registerHandlers() {
         // Handler for push button
-        this.applyCfgButton.addEventListener('click', () => this.setMaxLength()); 
+        this.applyCfgButton.addEventListener('click', () => this.setMaxLength());
         
         // Add validator
         this.maxLength.addEventListener('change', () => this.validateMaxLength()); 
@@ -55,14 +55,16 @@ export class View {
         } else {
             // reset error
             this.applyCfgButton.disabled = false;
-    }
-
+        }
+        
         return true;
     }
     
     setMaxLength() {
-        const maxLength = document.getElementById(this.maxLengthId).value;
-        
-        console.log("New value", maxLength, this.model.maxLength);
+        if(this.validateMaxLength()){
+            this.controller.setMaxLength(
+                parseInt(this.maxLength.value, 10)
+            );
+        }
     }
 }
