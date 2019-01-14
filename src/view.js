@@ -40,8 +40,26 @@ export class View {
     registerHandlers() {
         // Handler for push button
         this.applyCfgButton.addEventListener('click', () => this.setMaxLength()); 
+        
+        // Add validator
+        this.maxLength.addEventListener('change', () => this.validateMaxLength()); 
+    }
+    
+    validateMaxLength() {
+        if(!this.maxLength.value) {
+            console.log('Expected a non zero positive integer');
+
+            this.applyCfgButton.disabled = true;
+
+            return false;
+        } else {
+            // reset error
+            this.applyCfgButton.disabled = false;
     }
 
+        return true;
+    }
+    
     setMaxLength() {
         const maxLength = document.getElementById(this.maxLengthId).value;
         
