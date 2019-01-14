@@ -15,4 +15,12 @@ export class Controller {
         this.model.initialize()
             .then(() => this.view.initialize());
     }
+
+    /**
+     * Method to set the maximum length of the stack.
+     */
+    setMaxLength(length) {
+        this.model.setMaxLength(length)
+            .then(() => this.initialize());
+    }
 }
