@@ -38,4 +38,17 @@ export class Model {
             .then(() => {})
             .catch(error => console.log(error))
     }
+
+    /**
+     * Method to pop the top element from the stack via a POST request
+     * 
+     * Returns a promise
+     */
+    pop() {
+        this.values.splice(0, 1);
+        
+        return axios.post(`${SERVER_URL}stack`, {values: this.values})
+            .then(() => {})
+            .catch(error => console.log(error))
+    }
 }
