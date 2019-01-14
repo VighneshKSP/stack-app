@@ -2,11 +2,12 @@
  * Class defining the structure of the stack view
  */
 export class View {
-    constructor(model) {
-        // Ids of elements used; These can be class variables.
+    constructor(controller, model) {
+        // Ids of HTML elements; These can be class variables.
         this.maxLengthId = 'max-length';
         this.applyCfgId = 'apply-config';
     
+        this.controller = controller;
         this.model = model;
     }
 
