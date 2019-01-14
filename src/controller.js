@@ -30,4 +30,11 @@ export class Controller {
     pop() {
         this.model.pop().then(() => this.initialize());
     }
+    
+    /** 
+     * Method to push a new value into stack
+     */
+    push(value) {
+        this.model.push(value).then(() => this.initialize());
+    }
 }
