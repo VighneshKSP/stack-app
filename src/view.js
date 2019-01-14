@@ -6,6 +6,7 @@ export class View {
         // Ids of HTML elements; These can be class variables.
         this.maxLengthId = 'max-length';
         this.applyCfgId = 'apply-config';
+        this.popId = 'pop-value';
     
         this.controller = controller;
         this.model = model;
@@ -22,6 +23,8 @@ export class View {
                 <input type="number" name="max-length" id="${this.maxLengthId}" min="1" max="1000">
                 <input type="button" name="submit" value="Apply" id="${this.applyCfgId}">
             </form>
+
+            <input type="button" value="Pop" title="Pop the top element" id="${this.popId}">
         `;
 
         this.setElementReferences();
@@ -35,6 +38,7 @@ export class View {
     setElementReferences() {
         this.maxLength = document.getElementById(this.maxLengthId);
         this.applyCfgButton = document.getElementById(this.applyCfgId);
+        this.popButton = document.getElementById(this.popId);
     }
     
     registerHandlers() {
@@ -42,7 +46,10 @@ export class View {
         this.applyCfgButton.addEventListener('click', () => this.setMaxLength());
         
         // Add validator
-        this.maxLength.addEventListener('change', () => this.validateMaxLength()); 
+        this.maxLength.addEventListener('change', () => this.validateMaxLength());
+        
+        // Add handler for pop value from stack
+        this.popButton.addEventListener('click', () => this.pop());
     }
     
     validateMaxLength() {
@@ -65,6 +72,14 @@ export class View {
             this.controller.setMaxLength(
                 parseInt(this.maxLength.value, 10)
             );
+        }
+    }
+
+    pop() {
+        try {
+            this.controller.pop();
+        } catch(error) {
+            console.log(error.message);
         }
     }
 }
