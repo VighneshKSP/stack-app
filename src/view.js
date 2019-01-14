@@ -7,6 +7,8 @@ export class View {
         this.maxLengthId = 'max-length';
         this.applyCfgId = 'apply-config';
         this.popId = 'pop-value';
+        this.pushValId = 'push-value';
+        this.pushBtnId = 'push-btn';
     
         this.controller = controller;
         this.model = model;
@@ -25,6 +27,12 @@ export class View {
             </form>
 
             <input type="button" value="Pop" title="Pop the top element" id="${this.popId}">
+
+            <form class="push-value">
+                <label for="push-value">New value: </label>
+                <input type="text" name="push-value" id="${this.pushValId}">
+                <input type="button" name="submit" value="Push" id="${this.pushBtnId}">
+            </form>
         `;
 
         this.setElementReferences();
@@ -39,6 +47,8 @@ export class View {
         this.maxLength = document.getElementById(this.maxLengthId);
         this.applyCfgButton = document.getElementById(this.applyCfgId);
         this.popButton = document.getElementById(this.popId);
+        this.pushValue = document.getElementById(this.pushValId);
+        this.pushButton = document.getElementById(this.pushBtnId);
     }
     
     registerHandlers() {
@@ -50,6 +60,9 @@ export class View {
         
         // Add handler for pop value from stack
         this.popButton.addEventListener('click', () => this.pop());
+        
+        // Add handler for push value into the stack
+        this.pushButton.addEventListener('click', () => this.push());
     }
     
     validateMaxLength() {
@@ -78,6 +91,14 @@ export class View {
     pop() {
         try {
             this.controller.pop();
+        } catch(error) {
+            console.log(error.message);
+        }
+    }
+
+    push() {
+        try {
+            this.controller.push(this.pushValue.value);
         } catch(error) {
             console.log(error.message);
         }
