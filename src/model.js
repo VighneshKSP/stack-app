@@ -1,4 +1,4 @@
-import {StackUnderFlowError} from './exceptions.js';
+import {StackUnderFlowError, StackOverFlowError} from './exceptions.js';
 
 const SERVER_URL = 'http://localhost:3000/'
 
@@ -52,6 +52,23 @@ export class Model {
         }
 
         this.values.splice(0, 1);
+        
+        return axios.post(`${SERVER_URL}stack`, {values: this.values})
+            .then(() => {})
+            .catch(error => console.log(error))
+    }
+
+    /**
+     * Method to push a value at top of the stack via a POST request
+     * 
+     * Returns a promise
+     */
+    push(value) {
+        if (this.values.length === this.maxLength) {
+            throw new StackOverFlowError('Cannot push a new value. Stack is already full.');
+        }
+
+        this.values.unshift(value);
         
         return axios.post(`${SERVER_URL}stack`, {values: this.values})
             .then(() => {})
